@@ -1,10 +1,5 @@
 /* eslint-disable */
-import "bootstrap";
-import "./style.css";
 import "./index.html";
-
-import "./assets/img/rigo-baby.jpg";
-import "./assets/img/4geeks.ico";
 
 let who = [
   "The dog",
@@ -43,24 +38,25 @@ let when = [
   "before the flight"
 ];
 //Generates random numbers to select an item from each array. Outputs an array of 4 indexes.
-function randomGen() {
-  let dataLength = [who.length, action.length, what.length, when.length];
-  let randomSel = [];
-  for (let i = 0; i < 4; i++) {
-    let num = Math.floor(Math.random() * dataLength[i]);
-    randomSel.push(num);
+let fullSet = [who, action, what, when];
+
+function randomPick(arr) {
+  let size = arr.length - 1;
+  let random = Math.round(Math.random() * size);
+  return arr[random];
+}
+
+function buildExcuse(arr) {
+  let excuse = [];
+  for (let ele of arr) {
+    let randomPiece = randomPick(ele);
+    excuse.push(randomPiece);
   }
-  return randomSel;
+  return excuse.join(" ");
 }
-//Takes an array of indexes as input, and outputs a single string with a randomly generated excuse.
-function excuseBuilder(array) {
-  let excuse = `${who[array[0]]} ${action[array[1]]} ${what[array[2]]} ${
-    when[array[3]]
-  }`;
-  return excuse;
-}
+
 window.onload = function() {
-  let selectRandom = randomGen();
-  let excuseRandom = excuseBuilder(selectRandom);
-  document.getElementById("excuse").innerHTML = excuseRandom;
+  //write your code here
+  let excuse = buildExcuse(fullSet);
+  document.getElementById("excuse").innerHTML = excuse;
 };
