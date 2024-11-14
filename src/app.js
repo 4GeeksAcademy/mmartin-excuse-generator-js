@@ -57,7 +57,7 @@ window.onload = function() {
   ];
   //Picks a random element from an array of any length
   function randomPick(arr) {
-    let size = arr.length - 1;
+    let size = arr.length;
     let random = Math.floor(Math.random() * size);
     return arr[random];
   }
